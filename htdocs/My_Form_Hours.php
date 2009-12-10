@@ -43,7 +43,6 @@ class My_Form_Hours extends Zend_Form
         if (isset($_POST['hour_new'])) {
             foreach ($_POST['hour_new'] as $idx=>$values) {
                 if ($idx != '__unique__') {
-                    var_dump($values);
                     $elm = new Zend_Form_Element($idx);
                     $elm->setValue($values);
 

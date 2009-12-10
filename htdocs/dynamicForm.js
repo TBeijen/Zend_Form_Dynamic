@@ -9,7 +9,7 @@ function addElement()
     makeUnique(templateClone);
     templateClone.removeClass();
 
-    $('form input[type=text]:last').after(templateClone);
+    $('form input[type=text]:last').parent('li').after(templateClone);
     templateClone.show();
 }
 
