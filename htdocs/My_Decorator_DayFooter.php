@@ -12,7 +12,7 @@ class My_Decorator_DayFooter extends Zend_Form_Decorator_Abstract
         $elmName = $this->getElement()->getFullyQualifiedName();
 
         // construct footer
-        $footer = '<button class="add">add</button><hr />';
+        $footer = '<div class="footer"><a class="add">add</a></div><hr />';
 
         // it's a footer, so don't bother about placement
         return $content . $footer;

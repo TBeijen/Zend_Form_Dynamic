@@ -12,10 +12,12 @@ class My_Decorator_DayHeader extends Zend_Form_Decorator_Abstract
         $elmName = $this->getElement()->getName();
 
         // construct header
-        $header  = '<h3>Tasks for ' . strftime('%a, %d %b', $elmName) . '</h3>';
+        $header  = '<div class="header">';
+        $header .= '<h3>Tasks for ' . strftime('%a, %d %b', $elmName) . '</h3>';
         $header .= '<div class="legend">';
         $header .= '<span class="desc">Task description</span>';
         $header .= '<span class="completed">Completed</span>';
+        $header .= '</div>';
         $header .= '</div>';
 
         // it's a header, so placement is obvious...

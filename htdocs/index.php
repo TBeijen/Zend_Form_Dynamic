@@ -19,7 +19,7 @@ if (isset($_POST['tasks']) && count($_POST)>0) {
         <title>Zend_Form_Dynamic</title>
         <link rel="stylesheet" type="text/css" href="zend_form.css" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-        <script type="text/javascript" src="dynamicForm.js"></script>
+        <script type="text/javascript" src="js/dynamicForm.js"></script>
     </head>
     <body>
 

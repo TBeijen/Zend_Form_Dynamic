@@ -29,8 +29,14 @@ class My_Form_TaskWeek extends Zend_Form
     public function render()
     {
         // set view, do only when rendering
-        $this->setView(new Zend_View());
+        $view = new Zend_View();
+        $view->doctype('XHTML1_TRANSITIONAL');
+        $this->setView($view);
+
+        // add submit, only having viewHelper decorator
         $this->addElement('submit','submit');
+        $this->getElement('submit')->clearDecorators();
+        $this->getElement('submit')->AddDecorator('ViewHelper');
 
         $this->addDecorator('FormElements');
         $this->addDecorator('HtmlTag', array(

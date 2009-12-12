@@ -21,9 +21,8 @@ class My_Form_TaskDay extends Zend_Form_SubForm
 
         // add template element
         $templateElement = $this->createTaskElement(
-            'template',
-            array(),
-            array('class'=>'template')
+            '__template__',
+            array()
         );
         $templateElement->setIgnore(true);
         $this->getSubForm('new')->addElement($templateElement);
@@ -85,12 +84,11 @@ class My_Form_TaskDay extends Zend_Form_SubForm
      * @param array $attribs
      * @return Zend_Form_Element
      */
-    protected function createTaskElement($id, $values, $attribs = array())
+    protected function createTaskElement($id, $values)
     {
         $elm = new Zend_Form_Element((string) $id);
         $elm->clearDecorators();
         $elm->addDecorator(new My_Decorator_TaskElement());
-        $elm->setAttribs($attribs);
         $elm->setValue($values);
 
         return $elm;

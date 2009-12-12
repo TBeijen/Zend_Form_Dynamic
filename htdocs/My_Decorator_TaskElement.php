@@ -36,7 +36,7 @@ class My_Decorator_TaskElement extends Zend_Form_Decorator_Abstract
         // wrap in div, optionally adding attribute class
         $elmHtml = sprintf(
             '<div class="task %s">%s%s</div>',
-            $elm->getAttrib('class'),
+            ($elm->getName() == '__template__') ? 'template' : '',
             $inputDesc,
             $inputDone
         );
