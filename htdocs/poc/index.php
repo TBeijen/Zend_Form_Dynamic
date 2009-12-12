@@ -28,7 +28,7 @@ if (isset($_POST) && count($_POST)>0) {
     <head>
         <title>Zend_Form demo</title>
         <link rel="stylesheet" type="text/css" href="zend_form.css" />
-        <script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
         <script type="text/javascript" src="dynamicForm.js"></script>
     </head>
     <body>
