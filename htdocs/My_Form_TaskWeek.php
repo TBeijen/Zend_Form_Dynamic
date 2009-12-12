@@ -32,7 +32,6 @@ class My_Form_TaskWeek extends Zend_Form
         $this->setView(new Zend_View());
         $this->addElement('submit','submit');
 
-//        $this->clearDecorators();
         $this->addDecorator('FormElements');
         $this->addDecorator('HtmlTag', array(
             'tag' => 'div',
@@ -56,20 +55,6 @@ class My_Form_TaskWeek extends Zend_Form
         parent::setDefaults($defaults);
     }
 
-
-    /**
-     * Will extract (if neccessary) from $data the part that is submitted
-     * by this form.
-     * @param array $data
-     */
-    public function isValid($data)
-    {
-        if (isset($data[$this->_name])) {
-            $data = $data[$this->_name];
-        }
-        return parent::isValid($data);
-    }
-    
     /**
      * Will add a subform per day that is present in the defaults data.
      * (Be sure to provide a day key, even if no tasks exist_

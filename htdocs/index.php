@@ -3,27 +3,14 @@ require_once('bootstrap.php');
 require_once('dataProvider.php');
 require_once('My_Form_TaskWeek.php');
 
-//$hoursData = array(
-//    array( 'id' => 11, 'desc' => 'line1', 'h' => 8, 'm' => 0),
-//    array( 'id' => 12, 'desc' => 'line2', 'h' => 5, 'm' => 15),
-//);
-
-//var_dump($storedRegistrations);
-
 // create form & validate
 $Form = new My_Form_TaskWeek();
 $Form->setDefaults($storedTasks);
 
-//var_dump($_POST);
 if (isset($_POST['tasks']) && count($_POST)>0) {
-//var_dump($storedTasks);
-//var_dump($_POST);
-//die();
     $isValid = $Form->isValid($_POST);
-} else {
-    // initial state -> populate with defaults
-}
-// display page
+    // and if valid, do the necc. processing
+} 
 //header('Content-Type: text/html; charset=UTF-8');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
