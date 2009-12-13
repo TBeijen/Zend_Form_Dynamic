@@ -4,21 +4,12 @@ require_once('Zend/View.php');
 require_once('My_SubForm_TaskDay.php');
 
 class My_Form_TaskWeek extends Zend_Form
-{
-    /**
-     * The $_POST/$_GET key where form values will be placed in
-     * @var string
-     */
-    protected $_name = 'tasks';
-    
+{    
     /**
      * Prevents loading default decorators
      */
     public function init() 
     {
-        // make sure subforms start 'within' tasks key
-        $this->setIsArray(true);
-        $this->setName($this->_name);
         $this->setDisableLoadDefaultDecorators (true);
     }
 
@@ -56,7 +47,6 @@ class My_Form_TaskWeek extends Zend_Form
     {
         // first add the subforms
         $this->setSubForms($defaults);
-//        var_dump($defaults);
         // set defaults, which will propagate to newly created subforms
         parent::setDefaults($defaults);
     }

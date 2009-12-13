@@ -10,10 +10,10 @@ $dayUsed = $days[0];
 $dataUsed = $storedTasks[$dayUsed];
 
 $Form = new My_Form_TaskDay();
-$Form->setName($dayUsed);
+//$Form->setName($dayUsed);
 $Form->setDefaults($dataUsed);
 
-if (isset($_POST['tasks']) && count($_POST)>0) {
+if (isset($_POST) && count($_POST)>0) {
     $isValid = $Form->isValid($_POST);
     // and if valid, do the necc. processing
 }

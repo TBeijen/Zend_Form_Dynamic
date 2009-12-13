@@ -80,7 +80,13 @@ class My_SubForm_TaskDay extends Zend_Form_SubForm
             $data['new'] = array();
         }
         foreach ($data['new'] as $idx => $values) {
-            $subform->addElement($this->createTaskElement($idx, $data));
+            // Don't add element with idx = __template__. SetIgnore works on
+            // getValues. Template elements are submitted so this would otherwise
+            // override the previously added template element, thereby losing the
+            // setIgnore setting...
+            if ($idx !== '__template__') {
+                $subform->addElement($this->createTaskElement($idx, $data));
+            }
         }
         // call parent, which will populate newly created elements.
         return parent::isValid($data);
