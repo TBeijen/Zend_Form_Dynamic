@@ -2,6 +2,7 @@
 require_once('My_Decorator_DayHeader.php');
 require_once('My_Decorator_DayFooter.php');
 require_once('My_Decorator_TaskElement.php');
+require_once('My_Validator_TaskElement.php');
 require_once('Zend/Form/SubForm.php');
 require_once('Zend/Form/Element.php');
 
@@ -23,7 +24,8 @@ class My_SubForm_TaskDay extends Zend_Form_SubForm
         // add template element
         $templateElement = $this->createTaskElement(
             '__template__',
-            array()
+            array(),
+            true
         );
         $templateElement->setIgnore(true);
         $this->getSubForm('new')->addElement($templateElement);
@@ -85,7 +87,7 @@ class My_SubForm_TaskDay extends Zend_Form_SubForm
             // override the previously added template element, thereby losing the
             // setIgnore setting...
             if ($idx !== '__template__') {
-                $subform->addElement($this->createTaskElement($idx, $data));
+                $subform->addElement($this->createTaskElement($idx, $data, true));
             }
         }
         // call parent, which will populate newly created elements.
@@ -99,13 +101,19 @@ class My_SubForm_TaskDay extends Zend_Form_SubForm
      * @param array $attribs
      * @return Zend_Form_Element
      */
-    protected function createTaskElement($id, $values)
+    protected function createTaskElement($id, $values, $isNew = false)
     {
         $elm = new Zend_Form_Element((string) $id);
         $elm->clearDecorators();
         $elm->addDecorator(new My_Decorator_TaskElement());
+        $elm->addDecorator('Errors', array('placement'=>'prepend'));
         $elm->setValue($values);
 
+        // add configured validator
+        $validator = new My_Validator_TaskElement();
+        $validator->setIsNew($isNew);
+        $elm->addValidator($validator);
+        
         return $elm;
     }
 }
