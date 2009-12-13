@@ -1,7 +1,7 @@
 <?php
 require_once('Zend/Form.php');
 require_once('Zend/View.php');
-require_once('My_Form_TaskDay.php');
+require_once('My_SubForm_TaskDay.php');
 
 class My_Form_TaskWeek extends Zend_Form
 {
@@ -71,7 +71,7 @@ class My_Form_TaskWeek extends Zend_Form
         $this->clearSubForms();
         $dates = array_keys($defaults);
         foreach ($dates as $day) {
-            $dayForm = new My_Form_TaskDay();
+            $dayForm = new My_SubForm_TaskDay();
             $this->addSubForm($dayForm, $day);
         }
     }

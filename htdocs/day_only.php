@@ -1,16 +1,22 @@
 <?php
 require_once('bootstrap.php');
 require_once('dataProvider.php');
-require_once('My_Form_TaskWeek.php');
+require_once('Zend/View.php');
+require_once('My_Form_TaskDay.php');
 
 // create form & validate
-$Form = new My_Form_TaskWeek();
-$Form->setDefaults($storedTasks);
+$days = array_keys($storedTasks);
+$dayUsed = $days[0];
+$dataUsed = $storedTasks[$dayUsed];
+
+$Form = new My_Form_TaskDay();
+$Form->setName($dayUsed);
+$Form->setDefaults($dataUsed);
 
 if (isset($_POST['tasks']) && count($_POST)>0) {
     $isValid = $Form->isValid($_POST);
     // and if valid, do the necc. processing
-} 
+}
 //header('Content-Type: text/html; charset=UTF-8');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -22,7 +28,7 @@ if (isset($_POST['tasks']) && count($_POST)>0) {
         <script type="text/javascript" src="js/jquery.dynamicform.js"></script>
         <script type="text/javascript">
 $(document).ready(function() {
-    $('form .taskDay').dynamicForm();
+    $('.taskDay').dynamicForm();
 });
         </script>
     </head>
@@ -34,6 +40,7 @@ echo $Form->render();
 echo '<pre>';
 var_dump($Form->getValues());
 echo '</pre>';
+
 ?>
 
     </body>
