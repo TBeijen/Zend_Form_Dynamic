@@ -23,7 +23,7 @@ if (isset($_POST) && count($_POST)>0) {
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
     <head>
         <title>Zend_Form_Dynamic</title>
-        <link rel="stylesheet" type="text/css" href="zend_form.css" />
+        <link rel="stylesheet" type="text/css" href="css/TaskForm.css" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery.dynamicform.js"></script>
         <script type="text/javascript">

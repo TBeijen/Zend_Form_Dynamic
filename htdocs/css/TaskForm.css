@@ -1,0 +1,118 @@
+body
+{
+    font-size: 75%;
+    line-height: 130%;
+    font-family: verdana, arial, helvetica, sans-serif;
+}
+
+form
+{
+    margin:0 0 40px 0;
+    padding:0;
+    width:600px;
+}
+
+/* blocks */
+.taskDay
+{
+    margin:0 0 20px 0;
+    background-color: #D6D6EE;
+}
+.taskDay .header,
+.taskDay .task
+{
+    border-bottom: 1px solid #FFF;
+}
+.taskDay hr
+{
+    display:none;
+}
+
+/* day header */
+.taskDay .header
+{
+    position: relative;
+    height:50px;
+    color:#717189;
+}
+.taskDay .header h3
+{
+    text-align: right;
+    padding: 5px 20px;
+    font-size:90%;
+}
+.taskDay .header .legend
+{
+    position: absolute;
+    top: 30px;
+    font-size: 80%;
+    line-height: 20px;
+    font-style: italic;
+}
+.taskDay .header .legend .desc
+{
+    position: absolute;
+    width:500px;
+    left: 20px;
+}
+.taskDay .header .legend .completed
+{
+    position: absolute;
+    left: 520px;
+}
+/* input elements */
+.task
+{
+    position: relative;
+}
+.task input[type=text]
+{
+    position: absolute;
+    left:20px;
+    top: 2px;
+    width: 490px;
+    border:1px solid #717189;
+}
+.task input[type=checkbox]
+{
+    position: absolute;
+    left:540px;
+    top: 1px;
+}
+.footer .add
+{
+    display: block;
+    width: 50px;
+    line-height: 19px;
+    margin: 4px 0 0 20px;
+    background-color: #9292A6;
+    text-align: center;
+    font-weight: bold;
+    font-size: 90%;
+    color: #D6D6EE;
+    cursor: pointer;
+}
+.taskDay .task,
+.taskDay .footer
+{
+    min-height:25px;
+}
+
+
+
+
+
+form ul.errors
+{
+    list-style: disc;
+    margin:0;
+    padding:2px 10px;
+    color: #D00;
+    font-size:80%;
+}
+form ul.errors li
+{
+    margin:0 0 0 20px;
+    padding:0;
+}
+
