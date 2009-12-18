@@ -36,6 +36,7 @@ $(document).ready(function() {
 echo $Form->render();
 
 echo '<hr />';
+echo '<h3>$Form->getValues()</h3>';
 echo '<pre>';
 var_dump($Form->getValues());
 echo '</pre>';

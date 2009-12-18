@@ -4,7 +4,14 @@ require_once('Zend/View.php');
 require_once('My_SubForm_TaskDay.php');
 
 class My_Form_TaskWeek extends Zend_Form
-{    
+{
+    /**
+     * Holds the keys as present in the defaults array
+     * passed into setDefaults()
+     * @var array
+     */
+    protected $defaultsKeys = array();
+
     /**
      * Prevents loading default decorators
      */
@@ -49,6 +56,8 @@ class My_Form_TaskWeek extends Zend_Form
         $this->setSubForms($defaults);
         // set defaults, which will propagate to newly created subforms
         parent::setDefaults($defaults);
+        // store keys in array for future use
+        $this->defaultsKeys = array_keys($defaults);
     }
 
     /**
@@ -62,7 +71,39 @@ class My_Form_TaskWeek extends Zend_Form
         $dates = array_keys($defaults);
         foreach ($dates as $day) {
             $dayForm = new My_SubForm_TaskDay();
-            $this->addSubForm($dayForm, $day);
+            $this->addSubForm($dayForm, (string) $day);
         }
+    }
+
+
+    /**
+     * Zend_Form doesn't support numeric subform (and element) names.
+     * Because of that getValues() returns numeric array-keys instead of
+     * the timestamps that are supplied in setDefaults().
+     * This wacky fix determines if indexed arrays are present and if so,
+     * translates those back to the keys originally passed in.
+     *
+     * getValue(timestamp) works correct and doesn't need to be changed.
+     * 
+     * http://framework.zend.com/issues/browse/ZF-4204
+     *
+     * @param boolean $suppressArrayNotation
+     * @return array
+     */
+    public function getValues($suppressArrayNotation = false) {
+        $formValues = parent::getValues($suppressArrayNotation);
+
+        $keys = array_keys($formValues);
+        // check if indexed subforms are returned by looking for array-key 0.
+        if (in_array('0',$keys)) {
+            $values = array_values($formValues);
+            foreach ($keys as $keyIdx => $keyVal) {
+                if (is_numeric($keyVal) && isset($this->defaultsKeys[$keyVal])) {
+                    $keys[$keyIdx] = $this->defaultsKeys[$keyVal];
+                }
+            }
+            $formValues = array_combine($keys, $values);
+        }
+        return $formValues;
     }
 }
