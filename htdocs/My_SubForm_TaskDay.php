@@ -77,7 +77,7 @@ class My_SubForm_TaskDay extends Zend_Form_SubForm
      */
     public function isValid($data) {
         $subform = $this->getSubForm('new');
-        // make sure new is array (won't be in values if nothing submitted)
+        // make sure new is array (won't be in $data  if nothing submitted)
         if (!isset($data['new'])) {
             $data['new'] = array();
         }
@@ -107,7 +107,6 @@ class My_SubForm_TaskDay extends Zend_Form_SubForm
         $elm->clearDecorators();
         $elm->addDecorator(new My_Decorator_TaskElement());
         $elm->addDecorator('Errors', array('placement'=>'prepend'));
-        $elm->setValue($values);
 
         // add configured validator
         $validator = new My_Validator_TaskElement();

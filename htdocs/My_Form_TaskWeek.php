@@ -33,6 +33,7 @@ class My_Form_TaskWeek extends Zend_Form
 
         // add submit, only having viewHelper decorator
         $this->addElement('submit','submit');
+        $this->getElement('submit')->setIgnore(true);
         $this->getElement('submit')->clearDecorators();
         $this->getElement('submit')->AddDecorator('ViewHelper');
 
@@ -48,33 +49,24 @@ class My_Form_TaskWeek extends Zend_Form
 
     /**
      * Override setDefaults to dynamically generate subforms
+     * Will add a subform per day that is present in the defaults data.
+     * (Be sure to provide a day key, even if no tasks exist.
      * @param array $defaults
      */
     public function setDefaults($defaults)
     {
         // first add the subforms
-        $this->setSubForms($defaults);
-        // set defaults, which will propagate to newly created subforms
-        parent::setDefaults($defaults);
-        // store keys in array for future use
-        $this->defaultsKeys = array_keys($defaults);
-    }
-
-    /**
-     * Will add a subform per day that is present in the defaults data.
-     * (Be sure to provide a day key, even if no tasks exist_
-     * @param array $defaults
-     */
-    public function setSubForms($defaults)
-    {
         $this->clearSubForms();
         $dates = array_keys($defaults);
         foreach ($dates as $day) {
             $dayForm = new My_SubForm_TaskDay();
             $this->addSubForm($dayForm, (string) $day);
         }
+        // set defaults, which will propagate to newly created subforms
+        parent::setDefaults($defaults);
+        // store keys in array for future use
+        $this->defaultsKeys = array_keys($defaults);
     }
-
 
     /**
      * Zend_Form doesn't support numeric subform (and element) names.
@@ -95,6 +87,8 @@ class My_Form_TaskWeek extends Zend_Form
 
         $keys = array_keys($formValues);
         // check if indexed subforms are returned by looking for array-key 0.
+        // Database ids and timestamps won't be 0 so if that key exists we can
+        // sure it is because Zend_Form has altered the original numeric key.
         if (in_array('0',$keys)) {
             $values = array_values($formValues);
             foreach ($keys as $keyIdx => $keyVal) {

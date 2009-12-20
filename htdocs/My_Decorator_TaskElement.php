@@ -27,7 +27,7 @@ class My_Decorator_TaskElement extends Zend_Form_Decorator_Abstract
             $elmName . '[desc]',
             $descValue
         );
-        $inputDone = sprintf(
+        $inputCompleted = sprintf(
             '<input type="checkbox" name="%s" value="1" %s />',
             $elmName . '[completed]',
             ($isCompleted) ? 'checked="checked"' : ''
@@ -38,7 +38,7 @@ class My_Decorator_TaskElement extends Zend_Form_Decorator_Abstract
             '<div class="task %s">%s%s</div>',
             ($elm->getName() == '__template__') ? 'template' : '',
             $inputDesc,
-            $inputDone
+            $inputCompleted
         );
 
         // this should be the first decorator but add the content for

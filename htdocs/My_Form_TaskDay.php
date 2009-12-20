@@ -26,6 +26,7 @@ class My_Form_TaskDay extends My_SubForm_TaskDay
 
         // add submit, only having viewHelper decorator
         $this->addElement('submit','submit');
+        $this->getElement('submit')->setIgnore(true);
         $this->getElement('submit')->clearDecorators();
         $this->getElement('submit')->AddDecorator('ViewHelper');
 
